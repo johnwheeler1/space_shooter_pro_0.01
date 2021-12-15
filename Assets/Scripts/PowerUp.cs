@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class PowerUp : MonoBehaviour
 {
     // Variables
-    [SerializeField] private float _speed = 4.0f;
+    [SerializeField] float _speed = 3.0f;
+
+    void Start()
+    {
+        
+    }
 
 
     void Update()
@@ -13,14 +18,13 @@ public class Enemy : MonoBehaviour
         CalculateMovement();
     }
 
-    void CalculateMovement()
+    private void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
-        if (transform.position.y <= -5)
+        if (transform.position.y < -4.5f)
         {
-            float randomX = Random.Range(-8f, 8f);
-            transform.position = new Vector3(randomX, 7, 0);
+            Destroy(this.gameObject);
         }
     }
 
@@ -32,15 +36,9 @@ public class Enemy : MonoBehaviour
 
             if(player != null)
             {
-                player.Damage();
+                player.TripleShotActive();
             }
 
-            Destroy(this.gameObject);
-        }
-
-        if(other.tag == "Laser")
-        {
-            Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
     }
