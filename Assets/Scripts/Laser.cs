@@ -6,9 +6,8 @@ public class Laser : MonoBehaviour
 {
     // Variables
     [SerializeField] private float _speed = 8f;
-    
 
-    
+
     void Update()
     {
         CalculateMovement();

@@ -6,13 +6,8 @@ public class Enemy : MonoBehaviour
 {
     // Variables
     [SerializeField] private float _speed = 4.0f;
-    
-    void Start()
-    {
-        
-    }
 
-    
+
     void Update()
     {
         CalculateMovement();
@@ -31,13 +26,18 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // if other is player damage player and destroy us
         if(other.tag == "Player")
         {
+            Player player = other.transform.GetComponent<Player>();
+
+            if(player != null)
+            {
+                player.Damage();
+            }
+
             Destroy(this.gameObject);
         }
 
-        // if other is laser destroy laser and destroy us
         if(other.tag == "Laser")
         {
             Destroy(other.gameObject);
