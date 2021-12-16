@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField] private bool _isSpeedBoostActive = false;
     [SerializeField] private bool _isShieldBoostActive = false;
 
+    [SerializeField] private GameObject _shieldVisualizer;
+
     private float _canFire = -1f;
     private SpawnManager _spawnManager;
     
@@ -81,6 +83,13 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if(_isShieldBoostActive == true)
+        {
+            _isShieldBoostActive = false;
+            _shieldVisualizer.SetActive(false);
+            return;
+        }
+
         _lives--;
 
         if(_lives < 1)
@@ -119,12 +128,13 @@ public class Player : MonoBehaviour
     public void ShieldBoostActive()
     {
         _isShieldBoostActive = true;
-        StartCoroutine(ShieldBoostPowerDownRoutine());
+        _shieldVisualizer.SetActive(true);
+        // StartCoroutine(ShieldBoostPowerDownRoutine());
     }
 
-    IEnumerator ShieldBoostPowerDownRoutine()
-    {
-        yield return new WaitForSeconds(5.0f);
-        _isShieldBoostActive = false;
-    }
+    // IEnumerator ShieldBoostPowerDownRoutine()
+    // {
+    //     yield return new WaitForSeconds(10.0f);
+    //     _isShieldBoostActive = false;
+    // }
 }
