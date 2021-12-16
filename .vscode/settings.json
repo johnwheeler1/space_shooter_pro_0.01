@@ -55,6 +55,7 @@
     },
     "cmake.configureOnOpen": false,
     "cSpell.words": [
-        "Mathf"
+        "Mathf",
+        "Powerup"
     ]
 }

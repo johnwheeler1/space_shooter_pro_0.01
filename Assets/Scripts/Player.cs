@@ -5,15 +5,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Variables
+    [Header("Player Info")]
     [SerializeField] private float _speed = 3.5f;
-    [SerializeField] private GameObject _laserPrefab;
-    [SerializeField] private GameObject _tripleShotPrefab;
+    [SerializeField] private float _speedMultiplier = 2f;
     [SerializeField] private float _fireRate = 0.15f;
     [SerializeField] private int _lives = 3;
+    [Header("Player Weapons")]
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private GameObject _tripleShotPrefab;
+    [Header("Player Powerups")]
+    [SerializeField] private bool _isTripleShotActive = false;
+    [SerializeField] private bool _isSpeedBoostActive = false;
+    [SerializeField] private bool _isShieldBoostActive = false;
 
     private float _canFire = -1f;
     private SpawnManager _spawnManager;
-    [SerializeField] private bool _isTripleShotActive = false;
+    
 
     void Start()
     {
@@ -93,5 +100,31 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isTripleShotActive = false;
+    }
+
+    public void SpeedBoostActive()
+    {
+        _isSpeedBoostActive = true;
+        _speed *= _speedMultiplier;
+        StartCoroutine(SpeedBoostPowerDownRoutine());
+    }
+
+    IEnumerator SpeedBoostPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSpeedBoostActive = false;
+        _speed /= _speedMultiplier;
+    }
+
+    public void ShieldBoostActive()
+    {
+        _isShieldBoostActive = true;
+        StartCoroutine(ShieldBoostPowerDownRoutine());
+    }
+
+    IEnumerator ShieldBoostPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isShieldBoostActive = false;
     }
 }
