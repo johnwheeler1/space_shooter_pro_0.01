@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
@@ -8,12 +6,7 @@ public class PowerUp : MonoBehaviour
     [Header("Powerup Info")]
     [SerializeField] float _speed = 3.0f;
     [SerializeField] private int powerupID; // ID for Powerups (0 = Triple_Shot, 1 = Speed, 2 = Shields)
-
-    void Start()
-    {
-        
-    }
-
+    
 
     void Update()
     {
