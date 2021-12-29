@@ -9,18 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Menu.unity
     guid: fc9293680977b02429b692869d4ea060
   - enabled: 1
-    path: Assets/Scenes/Nebula.unity
+    path: Assets/Scenes/Game.unity
     guid: 4c2a9386ac554d44ca3a63b9d8d9bff5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dust_Galaxy.unity
     guid: cdd75420008abf24fb9d49b0a98c17e7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ort_Cloud.unity
     guid: 091fb840cb01cd0489c9108cd099037a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Spiral_Galaxy.unity
     guid: e47f90633448cd442b636ad1e595f6f7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Purple_Galaxy.unity
     guid: c20543c1721ffb94abfed396c5af92d4
   m_configObjects: {}
