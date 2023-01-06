@@ -5,11 +5,11 @@ public class SpawnManager : MonoBehaviour
 {
     // Variables
     [Header("Enemy Info")]
-    [SerializeField] GameObject _enemyPrefab;
-    [SerializeField] GameObject _enemyContainer;
+    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private GameObject _enemyContainer;
 
     [Header("Powerup Info")]
-    [SerializeField] GameObject[] _powerups;
+    [SerializeField] private GameObject[] _powerups;
 
     private bool _stopSpawning = false;
 

@@ -4,7 +4,7 @@ public class PowerUp : MonoBehaviour
 {
     // Variables
     [Header("Powerup Info")]
-    [SerializeField] float _speed = 3.0f;
+    [SerializeField] private float _speed = 3.0f;
     [SerializeField] private int powerupID; // ID for Powerups (0 = Triple_Shot, 1 = Speed, 2 = Shields)
 	[Header("Sound Clip")]
 	[SerializeField] private AudioClip _clip;

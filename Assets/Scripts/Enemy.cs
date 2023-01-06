@@ -4,9 +4,15 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
     // Variables
-    [Header("Enemy Info")]
+    [Header("Enemy Speed")]
     [SerializeField] private float _speed = 4.0f;
 
+    [Header("Enemy Laser")]
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private float _fireRate = 3.0f;
+    
+    // Private Variables - NOT Exposed To Inspector
+    private float _canFire = -1f;
     private Player _player;
     private Animator _anim;
     private AudioSource _audioSource;
@@ -32,6 +38,23 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+        CanFire();
+    }
+
+    private void CanFire()
+    {
+        if (Time.time > _canFire)
+        {
+            _fireRate = Random.Range(3f, 7f);
+            _canFire = Time.time + _fireRate;
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+        }
     }
 
     void CalculateMovement()
@@ -44,6 +67,8 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
+    
+    
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -74,6 +99,7 @@ public class Enemy : MonoBehaviour
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
+            Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.8f);
         }
     }
